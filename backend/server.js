@@ -31,4 +31,8 @@ app.use('/api/auth', authRoutes);
 const taskRoutes = require('./routes/taskRoutes');
 app.use('/api/tasks', taskRoutes);
 
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/users", userRoutes);
+
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -20,11 +20,8 @@ function Register() {
         email,
         password,
       });
-
       setSuccess(res.data.message);
       setError("");
-
-      // Redirection après inscription réussie (facultatif, délai de 1.5s)
       setTimeout(() => {
         navigate("/login");
       }, 1500);
@@ -35,19 +32,11 @@ function Register() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <div style={{ maxWidth: 400, margin: "auto" }}>
-        <h2>Inscription</h2>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        {success && <p style={{ color: "green" }}>{success}</p>}
-
+    <div style={containerStyle}>
+      <div style={cardStyle}>
+        <h2 style={titleStyle}>Inscription 📝</h2>
+        {error && <p style={errorStyle}>{error}</p>}
+        {success && <p style={successStyle}>{success}</p>}
         <form onSubmit={handleRegister}>
           <input
             type="text"
@@ -55,33 +44,90 @@ function Register() {
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            style={inputStyle}
           />
-          <br />
           <input
             type="email"
             placeholder="Email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={inputStyle}
           />
-          <br />
           <input
             type="password"
             placeholder="Mot de passe"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            style={inputStyle}
           />
-          <br />
-          <button type="submit">S’inscrire</button>
+          <button type="submit" style={buttonStyle}>S’inscrire</button>
         </form>
-
-        <p>
+        <p style={linkTextStyle}>
           Déjà un compte ? <Link to="/login">Se connecter</Link>
         </p>
       </div>
     </div>
   );
 }
+
+const containerStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "100vh",
+  backgroundColor: "#f2f4f7",
+};
+
+const cardStyle = {
+  backgroundColor: "#fff",
+  padding: "2rem",
+  borderRadius: "10px",
+  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+  width: "100%",
+  maxWidth: "400px",
+};
+
+const titleStyle = {
+  marginBottom: "1.5rem",
+  textAlign: "center",
+};
+
+const inputStyle = {
+  width: "100%",
+  padding: "10px",
+  marginBottom: "1rem",
+  borderRadius: "6px",
+  border: "1px solid #ccc",
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "10px",
+  backgroundColor: "#007BFF",
+  color: "#fff",
+  border: "none",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontWeight: "bold",
+};
+
+const errorStyle = {
+  color: "red",
+  marginBottom: "1rem",
+  textAlign: "center",
+};
+
+const successStyle = {
+  color: "green",
+  marginBottom: "1rem",
+  textAlign: "center",
+};
+
+const linkTextStyle = {
+  textAlign: "center",
+  marginTop: "1rem",
+};
 
 export default Register;
